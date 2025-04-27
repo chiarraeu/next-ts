@@ -1,17 +1,9 @@
-"use client";
+declare module '@tabler/icons-react' {
+  import React from 'react';
 
-import { IconBrandGoogle, IconUser, type TablerIconsProps } from "@tabler/icons-react";
-import React from "react";
+  export type TablerIconsProps = React.SVGProps<SVGSVGElement>;
 
-// Define types for the Icons component
-export type IconsType = {
-  user: React.FC<TablerIconsProps>;
-  google: React.FC<TablerIconsProps>;
-};
-
-// Export the Icons object with the required components
-export const Icons: IconsType = {
-  user: IconUser,
-  google: IconBrandGoogle,
-};
+  export const IconBrandGoogle: React.FC<TablerIconsProps>;
+  export const IconUser: React.FC<TablerIconsProps>;
+}
 
