@@ -1,4 +1,4 @@
-Use the latest Node.js LTS version as the base image
+#Use the latest Node.js LTS version as the base image
 FROM node:22-alpine
 
 # Set the working directory inside the container

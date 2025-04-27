@@ -133,20 +133,32 @@ import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/c
 import { signOut } from "next-auth/react";
 import { IconCreditCard, IconDotsVertical, IconLogout, IconNotification, IconUserCircle } from "@tabler/icons-react";
 
-export function NavUser() {
+// Define user interface
+interface UserData {
+  name: string;
+  email: string;
+  avatar: string;
+}
+
+interface NavUserProps {
+  user?: UserData;
+}
+
+export function NavUser({ user: propUser }: NavUserProps = {}) {
   
   const { data: session } = useSession();
   
   const { isMobile } = useSidebar();
 
-  if (!session) return null; // Ако няма потребител, не показва нищо
+  // If user prop is provided, use it; otherwise use session data
+  // If neither is available, don't render anything
+  if (!propUser && !session) return null;
 
-  const user = {
-    name: session.user?.name || "Guest",
-    email: session.user?.email || "No Email",
-    avatar: session.user?.image || "/default-avatar.png",
+  const user = propUser || {
+    name: session?.user?.name || "Guest",
+    email: session?.user?.email || "No Email",
+    avatar: session?.user?.image || "/default-avatar.png",
   };
-
   return (
     <SidebarMenu>
       <SidebarMenuItem>
